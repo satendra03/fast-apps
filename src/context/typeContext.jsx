@@ -1,9 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-
 const TypeContext = createContext();
 export const TypeProvider = ({ children }) => {
-  const [type, setType] = useState(false);
+  const [type, setType] = useState(true);
   const [version, setVersion] = useState();
   const [downloads, setDownloads] = useState(0);
   const frontend = {
@@ -25,32 +24,10 @@ export const TypeProvider = ({ children }) => {
     npmUrl: "https://www.npmjs.com/package/create-node-fast-server",
   };
 
-  // useEffect(() => {
-  //   const NPM_DOWNLOAD_URL =
-  //     "https://api.npmjs.org/downloads/point/last-month/create-react-fast-app";
-  //   const NPM_VERSION_URL =
-  //     "https://registry.npmjs.org/create-react-fast-app/latest";
-  //   const fetchData = async () => {
-  //     try {
-  //       const downloadsRes = await fetch(NPM_DOWNLOAD_URL);
-  //       const versionRes = await fetch(NPM_VERSION_URL);
-  //       const downloadsData = await downloadsRes.json();
-  //       const versionData = await versionRes.json();
-
-  //       setDownloads(downloadsData.downloads);
-  //       setVersion(versionData.version);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-
-
-   useEffect(() => {
+  useEffect(() => {
     const PACKAGE_NAME = type
-      ? "create-react-fast-app": "create-node-fast-server";
+      ? "create-react-fast-app"
+      : "create-node-fast-server";
 
     const NPM_DOWNLOAD_URL = `https://api.npmjs.org/downloads/point/last-month/${PACKAGE_NAME}`;
     const NPM_VERSION_URL = `https://registry.npmjs.org/${PACKAGE_NAME}/latest`;
@@ -64,12 +41,6 @@ export const TypeProvider = ({ children }) => {
 
         setDownloads(downloadsData.downloads);
         setVersion(versionData.version);
-
-        // show toast after switching
-        // toast.success(`Switched to ${type ? "backend" : "frontend"} mode`, {
-        //   description: `You can now use the command: ${PACKAGE_NAME}`,
-        //   duration: 2000,
-        // });
       } catch (error) {
         console.error("Error fetching NPM data:", error);
       }
@@ -82,7 +53,6 @@ export const TypeProvider = ({ children }) => {
 
     return () => clearTimeout(timeout);
   }, [type]);
-
 
   const data = type ? frontend : backend;
   const [copied, setCopied] = useState(false);

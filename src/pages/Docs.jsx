@@ -61,41 +61,6 @@ const Docs = () => {
   }, []);
 
   return (
-    // <div className="relative">
-    //     <ScrollProgress className="top-[10vh]" />
-    //     {/* Sidebar */}
-    //     <div className="grid grid-cols-[20%_1fr] w-full border gap-4">
-    //     <aside className="w-64 sticky top-0 left-0 h-screen p-4 border-r overflow-auto">
-    //       <nav className="space-y-2">
-    //         {sections.map((s) => (
-    //           <a
-    //             key={s.id}
-    //             href={`#${s.id}`}
-    //             className={`block px-2 py-1 rounded hover:bg-gray-200 ${
-    //               active === s.id ? "bg-blue-100 text-blue-600 font-semibold" : ""
-    //             }`}
-    //           >
-    //             {s.label}
-    //           </a>
-    //         ))}
-    //       </nav>
-    //     </aside>
-
-    //     {/* Main Content */}
-    //     <main className="flex-1 p-6 space-y-32">
-    //       {sections.map((s) => (
-    //         <section key={s.id} id={s.id} className="scroll-mt-24">
-    //           <h2 className="text-2xl font-bold mb-4">{s.label}</h2>
-    //           <p className="text-gray-600">
-    //             {/* Replace this with actual doc content */}
-    //             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Section:{" "}
-    //             {s.label}
-    //           </p>
-    //         </section>
-    //       ))}
-    //     </main>
-    //     </div>
-    //   </div>
 
     <div className="min-h-[90vh]">
       <div className="flex items-center justify-center md:justify-start md:px-80 py-5 w-screen sticky top-[10vh] z-50 shadow-md backdrop-blur-sm">
@@ -103,7 +68,7 @@ const Docs = () => {
           <BreadcrumbList>
             {path.map((item, index) => {
               return (
-                <BreadcrumbItem key={index} className={"hover:text-white"}>
+                <BreadcrumbItem key={index} className={"hover:text-white/50"}>
                   <BreadcrumbLink
                     className={
                       "hover:text-white hover:underline transition-all"
@@ -130,7 +95,11 @@ const Docs = () => {
                 key={index}
                 className="flex items-center gap-2 w-full justify-center"
               >
-                <Accordion type="single" collapsible>
+                <Accordion
+                  type="single"
+                  collapsible
+                  defaultValue="getting-started"
+                >
                   <AccordionItem value="getting-started">
                     <AccordionTrigger active>{item.title}</AccordionTrigger>
                     <AccordionContent className="ml-5">
@@ -342,19 +311,25 @@ const Docs = () => {
           <div className="section mb-20" id="faq">
             <h2 className="text-2xl font-bold mb-4">FAQ</h2>
             <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1" className="border-b border-zinc-800">
+              <AccordionItem
+                value="item-1"
+                className="border-b border-zinc-800"
+              >
                 <AccordionTrigger className="cursor-help text-base">
                   What is fast-apps ?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-500 text-base">
-                  fast-apps is a CLI tool that helps you quickly
-                  scaffold a React project with a production-ready folder
-                  structure and pre-configured Tailwind CSS and shadcn/ui.
+                  fast-apps is a CLI tool that helps you quickly scaffold a
+                  React project with a production-ready folder structure and
+                  pre-configured Tailwind CSS and shadcn/ui.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-2" className="border-b border-zinc-800">
-                <AccordionTrigger  className="cursor-help text-base">
+              <AccordionItem
+                value="item-2"
+                className="border-b border-zinc-800"
+              >
+                <AccordionTrigger className="cursor-help text-base">
                   How do I install fast-apps ?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-500 text-base">
@@ -365,48 +340,68 @@ const Docs = () => {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-3" className="border-b border-zinc-800">
+              <AccordionItem
+                value="item-3"
+                className="border-b border-zinc-800"
+              >
                 <AccordionTrigger className="cursor-help text-base">
                   What is included by default?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-500 text-base">
-                  - <span className="text-[#8180FF]">Vite</span> + <span className="text-[#58C4DC]">React</span> setup
-                  <br />
-                  - <span className="text-[#00BCFF]">Tailwind CSS</span> pre-configured
-                  <br />
-                  - <span className="text-[#FAFAFA]">shadcn/ui</span> components ready to use
+                  - <span className="text-[#8180FF]">Vite</span> +{" "}
+                  <span className="text-[#58C4DC]">React</span> setup
+                  <br />- <span className="text-[#00BCFF]">
+                    Tailwind CSS
+                  </span>{" "}
+                  pre-configured
+                  <br />- <span className="text-[#FAFAFA]">shadcn/ui</span>{" "}
+                  components ready to use
                   <br />
                   - Scalable folder structure
-                  <br />- Option to choose between <span className="text-[#F0DB4F]">JavaScript</span> or{" "}
-              <span className="text-[#3178C6]">TypeScript</span>
+                  <br />- Option to choose between{" "}
+                  <span className="text-[#F0DB4F]">JavaScript</span> or{" "}
+                  <span className="text-[#3178C6]">TypeScript</span>
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-4" className="border-b border-zinc-800">
+              <AccordionItem
+                value="item-4"
+                className="border-b border-zinc-800"
+              >
                 <AccordionTrigger className="cursor-help text-base">
                   Can I use it with TypeScript?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-500 text-base">
                   Yes. During the setup process, you can choose to generate your
-                  project with <span className="text-[#3178C6]">TypeScript</span> support.
+                  project with{" "}
+                  <span className="text-[#3178C6]">TypeScript</span> support.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-5" className="border-b border-zinc-800">
-                <AccordionTrigger className="cursor-help text-base">
-               Is it open-source?</AccordionTrigger>
-                <AccordionContent className="text-gray-500 text-base">
-                  Yes! fast-apps is open-source under the <Link
-                target="_blank"
-                rel="noopener noreferrer"
-                to="https://github.com/satendra03/fast-apps/blob/main/LICENSE"
+              <AccordionItem
+                value="item-5"
+                className="border-b border-zinc-800"
               >
-                <span className="text-blue-400 underline">MIT License</span>
-              </Link> Feel free to contribute or fork it for your own use.
+                <AccordionTrigger className="cursor-help text-base">
+                  Is it open-source?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-500 text-base">
+                  Yes! fast-apps is open-source under the{" "}
+                  <Link
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    to="https://github.com/satendra03/fast-apps/blob/main/LICENSE"
+                  >
+                    <span className="text-blue-400 underline">MIT License</span>
+                  </Link>{" "}
+                  Feel free to contribute or fork it for your own use.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-6" className="border-b border-zinc-800">
+              <AccordionItem
+                value="item-6"
+                className="border-b border-zinc-800"
+              >
                 <AccordionTrigger className="cursor-help text-base">
                   I found a bug. Where should I report it?
                 </AccordionTrigger>
@@ -430,7 +425,12 @@ const Docs = () => {
         {/* Right */}
         <div className="hidden md:flex h-[80vh] w-[20vw] border-l border-zinc-800 sticky top-[22vh] items-start">
           <nav className="space-y-2 flex items-start p-2 flex-col w-full">
-            <Accordion type="single" collapsible className="ml-5">
+            <Accordion
+              type="single"
+              collapsible
+              className="ml-5"
+              defaultValue="getting-started"
+            >
               <AccordionItem value="getting-started">
                 <AccordionTrigger active>On this Page</AccordionTrigger>
                 <AccordionContent className="ml-5">
