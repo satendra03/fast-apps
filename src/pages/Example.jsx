@@ -1,33 +1,3 @@
-// import React from "react";
-// import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-
-// const Home = () => <div className="p-8">Welcome to the <b>Home</b> page!</div>;
-// const About = () => <div className="p-8">This is the <b>About</b> page.</div>;
-
-// const Example = () => (
-//   <div className="min-h-[90vh]">
-//     <nav className="min-h-[90vh] flex gap-4 p-4 bg-zinc-900 text-white">
-//       <Link to="/examples" className="hover:underline">Home</Link>
-//       <Link to="/examples/about" className="hover:underline">About</Link>
-//     </nav>
-//     <Routes>
-//       <Route path="/examples" element={<Home />} />
-//       <Route path="/examples/about" element={<About />} />
-//     </Routes>
-//   </div>
-// );
-
-// export default Example;
-
-// import React from 'react'
-
-// function Example() {
-//   return (
-//     <div>Example</div>
-//   )
-// }
-
-// export default Example
 
 // "use client"
 
@@ -47,6 +17,7 @@ import {
   TypingAnimation,
 } from "@/components/magicui/terminal";
 import Showcase from "@/components/showCase";
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
 
 export default function Example() {
   const [step, setStep] = useState(0);
@@ -56,12 +27,11 @@ export default function Example() {
 
 const runCommand = async () => {
   setIsRunning(true);
-  await wait(1000);
+  // await wait(1000);
   setStep(1);
-  await wait(8000);
+  await wait(9000);
   setStep(2);
-  await wait(4000);
-  setStep(0);
+  // await wait(6000);
   setIsRunning(false);
 };
 
@@ -72,10 +42,11 @@ const runCommand = async () => {
 
   const { data } = useType();
   return (
-    <div className="min-h-[90vh] p-6 flex flex-col gap-6">
+    <div className="min-h-[70vh] mb-10 p-6 flex flex-col items-center justify-center gap-6">
+      <ScrollProgress className="top-[0vh] z-[100]" />
       <div className="flex items-center justify-center">
-        <div>
-          <h1 className="text-2xl font-bold">
+        <div className="">
+          <h1 className="text-3xl font-bold text-gray-500">
             <AuroraText>
               <code>fast-apps</code>
             </AuroraText>{" "}
@@ -92,13 +63,13 @@ const runCommand = async () => {
 
       <div className="flex gap-2 items-center justify-center">
         <Button
-          variant="outline text-muted-foreground"
           onClick={resetDemo}
-          disabled={isRunning || step === 0}
+          className="cursor-pointer active:scale-95 transition-all"
+          disabled={!isRunning || step === 0}
         >
           Reset Demo
         </Button>
-        <Button onClick={runCommand} disabled={isRunning || step > 0}>
+        <Button onClick={runCommand} className="cursor-pointer active:scale-95 transition-all" disabled={isRunning || step > 0}>
           Run Command
         </Button>
       </div>

@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 const TypeContext = createContext();
 export const TypeProvider = ({ children }) => {
   const [type, setType] = useState(true);
-  const [version, setVersion] = useState();
+  const [version, setVersion] = useState("");
   const [downloads, setDownloads] = useState(0);
   const frontend = {
     name: "Frontend",
@@ -49,7 +49,7 @@ export const TypeProvider = ({ children }) => {
     // delay to simulate smoother UI
     const timeout = setTimeout(() => {
       fetchData();
-    }, 500);
+    }, 100);
 
     return () => clearTimeout(timeout);
   }, [type]);
@@ -61,6 +61,8 @@ export const TypeProvider = ({ children }) => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  console.log("TypeContext data:", type);
 
   return (
     <TypeContext.Provider

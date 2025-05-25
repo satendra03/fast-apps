@@ -6,6 +6,10 @@ import Example from "./pages/Example";
 import Navbar from "./components/Navbar";
 import Foot from "./components/Foot";
 import NotFound from "./pages/NotFound";
+import GettingStartedWrapper from "./components/wrapper";
+import Introduction from "./components/intro";
+import Quickstart from "./components/Quickstart";
+import Docsq from "./pages/Docsq";
 
 function App() {
   return (
@@ -14,8 +18,10 @@ function App() {
         bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_50%,transparent_80%)]"
     >
       <Navbar />
+        <main className="flex-grow flex items-center justify-center">
       <Routes>
         <Route path="/" element={<Home />} />
+        
         <Route
           path="/docs"
           element={
@@ -24,13 +30,21 @@ function App() {
         />
         <Route path="/docs/*" element={<Docs />} />
         <Route path="/docs/getting-started/introduction" element={<Docs />} />
+        <Route path="/docs/getting-started/quick-start-guide" element={<Docsq />} />
+        {/* <Route
+          path="/docs/getting-started/*"
+          element={<GettingStartedWrapper />}
+        >
+          <Route path="introduction" index element={<Docs comp={<Introduction />} />} />
+          <Route path="quick-start-guide" element={<Docs comp={<Quickstart />} />} />
+        </Route> */}
         <Route path="/demo" element={<Example />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </main>
       <Foot />
     </div>
   );
- 
 }
 
 export default App;

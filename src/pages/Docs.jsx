@@ -1,7 +1,7 @@
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { leftSideMenu, navMenu, rightSideMenu } from "@/data";
+import { leftSideMenu, navMenu } from "@/data";
 import { Link, useLocation } from "react-router-dom";
 import {
   Accordion,
@@ -22,19 +22,28 @@ import { FileTreeDemo } from "@/components/folderstr";
 import { useType } from "@/context/typeContext";
 import { ScriptCopyBtn } from "@/components/magicui/script-copy-btn";
 import { Check, Clipboard } from "lucide-react";
+import Introduction from "@/components/intro";
+import Quickstart from "@/components/Quickstart";
+import Lenis from "lenis";
 
-// export const rightSideMenu = [
-//   { id: "intro", label: "Introduction" },
-//   { id: "why", label: "Why Fast-Apps?" },
-//   { id: "folder-structure", label: "Folde Structure" },
-//   { id: "install", label: "Installation" },
-//   { id: "usage", label: "Usage" },
-//   { id: "contributing", label: "Contributing" },
-//   { id: "license", label: "License" },
-//   { id: "faq", label: "FAQ" },
-// ];
+const lenis = new Lenis({
+  autoRaf: true,
+});
+
+
+const rightSideMenu = [
+  { id: "intro", label: "Introduction" },
+  { id: "why", label: "Why Fast-Apps?" },
+  { id: "folder-structure", label: "Folde Structure" },
+  { id: "install", label: "Installation" },
+  { id: "usage", label: "Usage" },
+  { id: "contributing", label: "Contributing" },
+  { id: "license", label: "License" },
+  { id: "faq", label: "FAQ" },
+];
 
 const Docs = () => {
+  const scrollRef = useRef(null);
   const [active, setActive] = useState("intro");
   const pathname = useLocation().pathname;
   const path = pathname.split("/");
@@ -42,12 +51,11 @@ const Docs = () => {
   const pathName = path[0] ? path[0] : "docs";
   const offset = window.innerHeight * 0.3;
 
-  //   const { data } = useType();
   const { setType, data, handleCopy, copied } = useType();
 
   useEffect(() => {
     const handleScroll = () => {
-      let current = "intro";
+      let current = active;
       for (let section of rightSideMenu) {
         const el = document.getElementById(section.id);
         if (el && el.offsetTop <= window.scrollY + offset) {
@@ -60,18 +68,73 @@ const Docs = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
+  // useEffect(() => {
+  //   const container = scrollRef.current;
 
+  //   const getOffsetTopRelativeTo = (el, container) => {
+  //     let offset = 0;
+  //     let currentEl = el;
+  //     while (currentEl && currentEl !== container) {
+  //       offset += currentEl.offsetTop;
+  //       currentEl = currentEl.offsetParent;
+  //     }
+  //     return offset;
+  //   };
+
+  //   const handleScroll = () => {
+  //     if (!container) return;
+  //     const scrollTop = container.scrollTop;
+  //     let current = "intro";
+
+  //     for (const section of rightSideMenu) {
+  //       const el = document.getElementById(section.id);
+  //       if (el) {
+  //         const offsetTop = getOffsetTopRelativeTo(el, container);
+  //         if (offsetTop <= scrollTop + offset) {
+  //           current = section.id;
+  //         }
+  //       }
+  //     }
+  //     setActive(current);
+  //   };
+
+  //   if (container) {
+  //     container.addEventListener("scroll", handleScroll);
+  //   }
+  //   return () => {
+  //     if (container) {
+  //       container.removeEventListener("scroll", handleScroll);
+  //     }
+  //   };
+  // }, [offset]);
+
+  const handleClick = (id) => {
+    const container = scrollRef.current;
+    const el = document.getElementById(id);
+    if (el && container) {
+      const offsetTop = getOffsetTopRelativeTo(el, container);
+      container.scrollTo({
+        top: offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
     <div className="min-h-[90vh]">
-      <div className="flex items-center justify-center md:justify-start md:px-80 py-5 w-screen sticky top-[10vh] z-50 shadow-md backdrop-blur-sm">
-        <Breadcrumb>
+
+      <ScrollProgress className="top-[0vh] z-[100]" />
+
+
+      <div className="flex items-center justify-center md:justify-start px-10 md:px-24 lg:px-80 py-5 md:py-5 w-screen sticky top-[0vh] z-[37] shadow-md backdrop-blur-sm">
+        <Breadcrumb className="">
           <BreadcrumbList>
             {path.map((item, index) => {
               return (
                 <BreadcrumbItem key={index} className={"hover:text-white/50"}>
                   <BreadcrumbLink
                     className={
-                      "hover:text-white hover:underline transition-all"
+                      "hover:text-white text-sm transition-all"
                     }
                   >
                     {item.charAt(0).toUpperCase() + item.slice(1)}
@@ -84,11 +147,11 @@ const Docs = () => {
         </Breadcrumb>
       </div>
 
-      <ScrollProgress className="top-[10vh]" />
+      
 
-      <div className=" w-screen h-full flex px-24 mt-5">
+      <div className="w-screen h-full flex px-24 mt-5">
         {/* Left */}
-        <div className="hidden md:flex h-[80vh] w-[20vw] border-r border-zinc-800 sticky top-[22vh] items-start">
+        <div className="hidden lg:flex h-[80vh] w-[20vw] border-r border-zinc-800 sticky top-[20vh] items-start">
           {leftSideMenu.map((item, index) => {
             return (
               <div
@@ -125,7 +188,7 @@ const Docs = () => {
           })}
         </div>
 
-        {/* Main */}
+        {/* Main - Introduction*/}
         <div className="space-y-4 p-4 w-full text-left">
           {/* Content */}
 
@@ -208,9 +271,9 @@ const Docs = () => {
               To get started, run the following command:
             </p>
 
-            <div className="flex flex-wrap items-center justify-start gap-4 my-2">
+            <div className="flex items-center justify-start gap-4 my-2">
               <button className="bg-zinc-800 text-white border border-zinc-700 px-6 py-2 rounded-md text-base flex items-center gap-2 transition-colors hover:bg-zinc-700">
-                <code className="">{data.command}</code>
+                <code className="text-[0.8rem] md:text-sm lg:text-base">{data.command}</code>
               </button>
               <button
                 onClick={handleCopy}
@@ -308,7 +371,7 @@ const Docs = () => {
           </div>
 
           {/* FAQ */}
-          <div className="section mb-20" id="faq">
+          <div className="section" id="faq">
             <h2 className="text-2xl font-bold mb-4">FAQ</h2>
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem
@@ -422,8 +485,9 @@ const Docs = () => {
           </div>
         </div>
 
+
         {/* Right */}
-        <div className="hidden md:flex h-[80vh] w-[20vw] border-l border-zinc-800 sticky top-[22vh] items-start">
+        <div className="hidden lg:flex h-[80vh] w-[20vw] border-l border-zinc-800 sticky top-[20vh] items-start">
           <nav className="space-y-2 flex items-start p-2 flex-col w-full">
             <Accordion
               type="single"
@@ -451,62 +515,8 @@ const Docs = () => {
           </nav>
         </div>
       </div>
-      {/* <h1 className="text-4xl font-bold mb-4">
-      React Router DOM Documentation
-    </h1>
-    <p className="mb-4">
-      Version: <b>7.6.0</b>
-    </p>
-    <h2 className="text-2xl font-semibold mt-6 mb-2">Installation</h2>
-    <pre className="bg-zinc-900 text-white p-4 rounded mb-4">
-      <code>npm install react-router-dom@7.6.0</code>
-    </pre>
-    <h2 className="text-2xl font-semibold mt-6 mb-2">Basic Usage</h2>
-    <p className="mb-2">
-      Wrap your app with <code>&lt;BrowserRouter&gt;</code> and use{" "}
-      <code>&lt;Routes&gt;</code> and <code>&lt;Route&gt;</code> for
-      navigation.
-    </p>
-    <pre className="bg-zinc-900 text-white p-4 rounded mb-4">
-      <code>{`import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-    </Routes>
-  </BrowserRouter>`}</code>
-    </pre>
-    <h2 className="text-2xl font-semibold mt-6 mb-2">Features</h2>
-    <ul className="list-disc ml-6 mb-4">
-      <li>Declarative routing for React apps</li>
-      <li>Nested routes</li>
-      <li>Dynamic route params</li>
-      <li>Programmatic navigation</li>
-    </ul>
-    <h2 className="text-2xl font-semibold mt-6 mb-2">More Info</h2>
-    <a
-      href="https://reactrouter.com/en/main"
-      className="text-blue-400 underline"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Official React Router Docs
-    </a> */}
     </div>
   );
-  //   return (
-  //     <div>
-  //       <ScrollProgress className="top-[10vh]" />
-  //       <div className="min-h-[90vh]">
-  // <div className="border w-[full] grid grid-cols-[20%_auto_20%] gap-2 p-2">
-  //     <div className="border"></div>
-  //     <ScrollArea className="h-full w-full border p-4"></ScrollArea>
-  //     <div className="border"></div>
-  // </div>
-  //       </div>
-  //     </div>
-  //   );
 };
 
 export default Docs;

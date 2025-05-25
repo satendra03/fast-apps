@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import CommandTerminal from "./command-terminal";
-import FolderStructure from "./folder-structure";
+// import FolderStructure from "./folder-structure";
 
 const Showcase = ({ step }) => {
   return (

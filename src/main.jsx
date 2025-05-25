@@ -5,6 +5,10 @@ import App from "./App.jsx";
 import { TypeProvider } from "./context/typeContext";
 import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner"
+import Lenis from "lenis";
+
+// Initialize Lenis
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
