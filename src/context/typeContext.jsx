@@ -62,7 +62,6 @@ export const TypeProvider = ({ children }) => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  console.log("TypeContext data:", type);
 
   return (
     <TypeContext.Provider
