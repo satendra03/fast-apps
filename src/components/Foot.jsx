@@ -85,10 +85,10 @@ export default function Foot() {
   const { downloads } = useType();
 
   return (
-    <footer className="z-50  md:min-h-[10vh] mt-10 flex flex-col text-gray-500 w-full items-center justify-between px-6 sm:px-10 md:px-20 lg:px-64 py-4 border-t border-zinc-800">
+    <footer className="z-[50] md:min-h-[10vh] mt-10 flex flex-col text-gray-500 w-full items-center justify-between px-6 sm:px-10 md:px-20 lg:px-64 py-4 border-t border-zinc-800">
       <div className="mx-auto flex w-full flex-col items-center justify-between gap-4 sm:flex-row">
         {/* Logo and Name */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 z-0">
           <img src="/fast-apps.png" alt="logo" className="h-8" />
         </div>
 
