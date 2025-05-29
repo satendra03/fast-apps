@@ -10,6 +10,7 @@ import GettingStartedWrapper from "./components/wrapper";
 import Introduction from "./components/intro";
 import Quickstart from "./components/Quickstart";
 import Docsq from "./pages/Docsq";
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
       </Routes>
       </main>
       <Foot />
+      <Analytics />
     </div>
   );
 }
