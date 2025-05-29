@@ -1,69 +1,61 @@
-# ⚡️ React Fast App
+# 🚀 fast-apps
 
-A blazing fast React + Tailwind + ShadCN UI starter template ⚛️✨  
-Built to save you time by skipping all the setup — just one command and you're ready to build!
-
----
-
-## 🚀 What is this?
-
-`react-fast-app` is a pre-configured React starter template that includes:
-
-- ✅ **React + Vite**
-- 🎨 **Tailwind CSS**
-- 🧩 **ShadCN UI**
-- 💻 **Prettier + basic folder structure**
-- 📦 **Built and deployed using `npm create react-fast-app`**
+**fast-apps** is a powerful CLI toolkit designed to speed up your development workflow. It includes tools to instantly scaffold full-stack applications with minimal setup — so you can focus on building, not boilerplate.
 
 ---
 
-## 📦 How to Use
+## 📦 What's Included?
+
+### 1. [react-fast-app](https://github.com/satendra03/react-fast-app)
+Quickly generate a React project with:
+
+- ⚡ Tailwind CSS preconfigured  
+- 🎨 shadcn/ui components  
+- ✅ JavaScript or TypeScript support  
+- 🛠️ Clean project structure
+
+Run with:
 
 ```bash
-npm create react-fast-app
+npm create react-fast-app@latest
 ```
----
 
-### You’ll be prompted to:
+### 2. [node-fast-server](https://github.com/satendra03/node-fast-server)
 
-- Enter your project name  
-- Choose your configuration (JS/TS, ShadCN/Magic UI, etc. coming soon!)
+Instantly scaffold an Express.js backend with:
 
-After that:
+- ✅ Essential middleware setup  
+- 🔐 Environment config  
+- 🗂️ Structured file system  
+- 🚀 Ready to deploy
 
-✅ Project is scaffolded  
-📦 Dependencies auto-installed 
+**Run with:**
 
----
+```bash
+npx node-fast-server@latest
+```
 
-## 🧠 Why use this?
+## 💡 Why fast-apps?
 
-Setting up Tailwind + ShadCN manually each time is:
-
-- ❌ Time-consuming  
-- ❌ Repetitive  
-
-With this, you get:
-
-- ✅ One-liner setup  
-- ✅ Fully styled React app  
-- ✅ Ready-to-code experience in 10 seconds
+- Save time on setup  
+- Follow best practices from the start  
+- Great for hackathons, prototypes, and production-ready apps  
+- Consistent full-stack starter kits in seconds
 
 ---
 
-## 🛠 Tech Stack
+## 📎 Links
 
-- ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-- ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-- ![ShadCN UI](https://img.shields.io/badge/shadcn/ui-000000.svg?style=for-the-badge&logo=shadcn/ui&logoColor=white)
+- GitHub: [https://github.com/satendra03/fast-apps](https://github.com/satendra03/fast-apps)
+- npm:
+  - [react-fast-app](https://www.npmjs.com/package/create-react-fast-app)
+  - [node-fast-server](https://www.npmjs.com/package/create-node-fast-server)
 
 ---
 
-## 🤖 Coming Soon
+## 🛠️ Contributing
 
-- JS vs TS choice  
-- ShadCN vs Magic UI vs Acentrity UI  
-- More layout presets 
+Feel free to open issues or submit PRs to improve or add features!
 
 ---
 
