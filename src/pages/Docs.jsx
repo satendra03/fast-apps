@@ -639,7 +639,7 @@ const Docs = () => {
   }, [active, offset]);
 
   return (
-    <div className="min-h-[90vh] bg-black text-white">
+    <div className="min-h-[90vh]">
       <ScrollProgress className="top-[0vh] z-[100]" />
 
       <div className="flex items-center justify-center md:justify-start px-10 md:px-24 lg:px-80 py-5 md:py-5 w-screen sticky top-[0vh] z-[37] shadow-md backdrop-blur-sm">
@@ -657,7 +657,7 @@ const Docs = () => {
         </Breadcrumb>
       </div>
 
-      <div className="w-screen h-full flex px-24 mt-5">
+      <div className="w-screen h-full flex px-[10vw] mt-5">
         {/* Left Sidebar */}
         <div className="hidden lg:flex h-[80vh] w-[20vw] border-r border-zinc-800 sticky top-[20vh] items-start">
           {leftSideMenu.map((item, index) => (
