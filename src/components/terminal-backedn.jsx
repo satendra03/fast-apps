@@ -18,7 +18,7 @@ const credit = `
 ╰─────────────────────────────────────────────╯
 `;
 
-const CommandTerminal = ({ step }) => {
+const TerminalBackend = ({ step }) => {
   const { data } = useType();
   const [showClearScreen, setShowClearScreen] = useState(false);
   const [hasOpenedTab, setHasOpenedTab] = useState(false);
@@ -48,7 +48,7 @@ const CommandTerminal = ({ step }) => {
     if (step === 2 && showClearScreen && !hasOpenedTab) {
       // Wait for the "to expose" line to appear (4.5 seconds after clear screen)
       const openTabTimer = setTimeout(() => {
-        window.open("http://localhost:5173", "_blank");
+        window.open("http://localhost:5000", "_blank");
         setHasOpenedTab(true);
       }, 4500);
 
@@ -79,18 +79,19 @@ const CommandTerminal = ({ step }) => {
           <>
             <AnimatedSpan delay={1500} className="text-white">
               <span>{"> npx"}</span>
-              <span>{"> npx create-react-fast-app"}</span>
+              <span>{"> npx create-node-fast-server"}</span>
             </AnimatedSpan>
             <br />
 
             <AnimatedSpan delay={2500} className="text-green-500">
               <span>
-                ✨ Thank You for using <i>react-fast-app</i>
+                ✨ Thank You for using <i>node-fast-server</i>
               </span>
             </AnimatedSpan>
             <AnimatedSpan delay={2500} className="text-gray-500">
               <span>
-                This will create a react app with Tailwind CSS and shadcn UI
+                This will create a Node.js server boilerplate with minimal
+                setup.
               </span>
             </AnimatedSpan>
             <br />
@@ -142,8 +143,11 @@ const CommandTerminal = ({ step }) => {
               ✅ All done!
             </TypingAnimation>
             <TypingAnimation delay={1000} className="text-blue-500">
-              ✨ Starting development server...
+              ✨ Happy Backend development...
             </TypingAnimation>
+            <AnimatedSpan delay={1500} className="text-gray-400">
+              <CreditBox />
+            </AnimatedSpan>
           </>
         )}
 
@@ -151,43 +155,33 @@ const CommandTerminal = ({ step }) => {
         {step === 2 && showClearScreen && (
           <>
             <TypingAnimation delay={0} className="text-white">
-              <span>{">react-fast-app@0.0.0 dev"}</span>
+              <span>{"> node-mongodb-js@1.0.0 dev"}</span>
             </TypingAnimation>
             <TypingAnimation delay={500} className="text-white">
-              <span>{"> vite"}</span>
+              <span>{">  nodemon src/server.js"}</span>
             </TypingAnimation>
             <br />
-            <TypingAnimation delay={1000} className="text-gray-400">
-              <span>
-                <span className="text-green-500">VITE v6.3.5 </span>
-                ready in
-                <span className="text-white"> 1314 ms</span>
-              </span>
+            <TypingAnimation delay={1000} className={"text-yellow-500"}>[nodemon] 3.1.10 </TypingAnimation>
+            <TypingAnimation delay={1000} className={"text-yellow-500"}>
+              [nodemon] to restart at any time, enter `rs`
             </TypingAnimation>
-            <TypingAnimation delay={2000} className="text-gray-400">
-              <span>
-                <span className="text-green-500">➜ </span>{" "}
-                <span className="text-white">Local:</span>{" "}
-                <span className="text-blue-500 underline cursor-pointer">
-                  {" "}
-                  http://localhost:5173/{" "}
-                </span>
-              </span>
+            <TypingAnimation delay={1000} className={"text-yellow-500"}>
+              [nodemon] watching path(s): *.*
             </TypingAnimation>
-            <TypingAnimation delay={3000} className="text-gray-400">
-              <span>
-                <span className="text-green-500">➜ </span>{" "}
-                <span className="text-white/50">Network: use</span>{" "}
-                <span className="text-white"> --host </span>{" "}
-                <span className="text-white/50">to expose</span>
-              </span>
+            <TypingAnimation
+              delay={1000}
+              className={"text-yellow-500"}
+            ></TypingAnimation>
+
+            <TypingAnimation delay={2000} className="text-green-500">
+              [nodemon] starting `node src/server.js`
+            </TypingAnimation>
+            <TypingAnimation delay={3000} className="text-white">
+              MongoDB connected
             </TypingAnimation>
 
-            <AnimatedSpan delay={4000} className="text-green-500">
-              <span>✨ Happy Development!</span>
-            </AnimatedSpan>
-            <AnimatedSpan delay={4500} className="text-gray-400">
-              <CreditBox />
+            <AnimatedSpan delay={4000} className="text-white">
+              Server running on port 5000
             </AnimatedSpan>
           </>
         )}
@@ -196,4 +190,4 @@ const CommandTerminal = ({ step }) => {
   );
 };
 
-export default CommandTerminal;
+export default TerminalBackend;

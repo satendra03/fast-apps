@@ -300,7 +300,7 @@ const Navbar = () => {
 
           {/* Mobile Hamburger */}
           <div className="md:hidden">
-            <Button onClick={toggleMenu} variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
+            <Button onClick={toggleMenu} variant="ghost" size="icon" className="text-white hover:bg-zinc-800 cursor-pointer active:scale-95 transition-all">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
           </div>

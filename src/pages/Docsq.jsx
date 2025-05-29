@@ -41,7 +41,7 @@ const Docsq = () => {
   const pathName = path[0] ? path[0] : "docs";
   const offset = window.innerHeight * 0.3;
 
-  const { setType, data, handleCopy, copied } = useType();
+  // const { setType, data, handleCopy, copied } = useType();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,11 +70,184 @@ const Docsq = () => {
     }
   };
 
+  const { setType, data, handleCopy, copied, type } = useType();
+  const [getType, setGetType] = useState(0);
+
+  const docsContent = [
+    {
+      quickStart: {
+        id: "quick-start",
+        title: "Quick Start",
+        content: (
+          <>
+            <p className="text-gray-500">
+              Spin up a fully configured{" "}
+              <span className="text-[#58C4DC]">React</span> +{" "}
+              <span className="text-[#00BCFF]">Tailwind CSS</span> project with
+              a fully preconfigured setup in seconds — no boilerplate, no
+              hassle.
+            </p>
+          </>
+        ),
+      },
+      Prerequisites: {
+        id: "prereq",
+        title: "Prerequisites",
+        content: (
+          <>
+            <ul className=" text-gray-500 list-disc pl-5">
+              <li>
+                <span className="text-[#4F9C43]"> Node.js </span> – v16 or
+                higher
+              </li>
+              <li>
+                <span className="text-red-500"> npm </span> – v8 or higher
+              </li>
+            </ul>
+          </>
+        ),
+      },
+      usage: {
+        id: "how-use",
+        title: "How to use?",
+        content: (
+          <>
+            <ol className="text-gray-500 flex flex-col pl-5 list-decimal">
+              <li className="my-2">
+                <span className="text-white/90"> Run the CLI</span> – Open your
+                terminal and run: <br />
+                <div className="flex items-center justify-start gap-4 my-2">
+                  <button className="bg-zinc-800 text-white border border-zinc-700 px-6 py-2 rounded-md text-base flex items-center gap-2 transition-colors hover:bg-zinc-700">
+                    <code className="text-[0.8rem] md:text-sm lg:text-base">
+                      {data.command}
+                    </code>
+                  </button>
+                  <button
+                    onClick={handleCopy}
+                    className="bg-zinc-700 hover:bg-zinc-600 text-white p-2 rounded-md cursor-pointer flex items-center gap-2 active:scale-95 transition-all"
+                    aria-label="Copy to clipboard"
+                  >
+                    {copied ? <Check size={24} /> : <Clipboard size={24} />}
+                  </button>
+                </div>
+              </li>
+              <li className="my-2">
+                <span className="text-white/90"> Choose Options</span> – You'll
+                be prompted to:
+                <ul className="list-disc list-inside text-gray-500">
+                  <li>Enter your project name</li>
+                  <li>
+                    Select <span className="text-[#F0DB4F]">JavaScript</span> or{" "}
+                    <span className="text-[#3178C6]">TypeScript</span>
+                  </li>
+                </ul>
+              </li>
+              <li className="my-2">
+                <span className="text-white/90"> Enjoy </span> – Your new
+                project: <br />
+                <ul className="list-disc list-inside text-gray-500">
+                  <li>Project folder is auto-created</li>
+                  <li>Dependencies are installed automatically</li>
+                  <li>Development server starts on its own</li>
+                </ul>
+              </li>
+            </ol>
+          </>
+        ),
+      },
+    },
+    {
+      quickStart: {
+        id: "quick-start",
+        title: "Quick Start",
+        content: (
+          <>
+            <p className="text-gray-500">
+              Spin up a fully configured{" "}
+              <span className="text-[#4F9C43]"> Node.js </span> +{" "}
+              <span className="text-[#00684A]">MongoDB</span> project with a
+              fully preconfigured setup in seconds — no boilerplate, no hassle.
+            </p>
+          </>
+        ),
+      },
+      Prerequisites: {
+        id: "prereq",
+        title: "Prerequisites",
+        content: (
+          <>
+            <ul className=" text-gray-500 list-disc pl-5">
+              <li>
+                <span className="text-[#4F9C43]"> Node.js </span> – v16 or
+                higher
+              </li>
+              <li>
+                <span className="text-red-500"> npm </span> – v8 or higher
+              </li>
+            </ul>
+          </>
+        ),
+      },
+      usage: {
+        id: "how-use",
+        title: "How to use?",
+        content: (
+          <>
+            <ol className="text-gray-500 flex flex-col pl-5 list-decimal">
+              <li className="my-2">
+                <span className="text-white/90"> Run the CLI</span> – Open your
+                terminal and run: <br />
+                <div className="flex items-center justify-start gap-4 my-2">
+                  <button className="bg-zinc-800 text-white border border-zinc-700 px-6 py-2 rounded-md text-base flex items-center gap-2 transition-colors hover:bg-zinc-700">
+                    <code className="text-[0.8rem] md:text-sm lg:text-base">
+                      {data.command}
+                    </code>
+                  </button>
+                  <button
+                    onClick={handleCopy}
+                    className="bg-zinc-700 hover:bg-zinc-600 text-white p-2 rounded-md cursor-pointer flex items-center gap-2 active:scale-95 transition-all"
+                    aria-label="Copy to clipboard"
+                  >
+                    {copied ? <Check size={24} /> : <Clipboard size={24} />}
+                  </button>
+                </div>
+              </li>
+              <li className="my-2">
+                <span className="text-white/90"> Choose Options</span> – You'll
+                be prompted to:
+                <ul className="list-disc list-inside text-gray-500">
+                  <li>Enter your project name</li>
+                  <li>
+                    Select <span className="text-[#F0DB4F]">JavaScript</span> or{" "}
+                    <span className="text-[#3178C6]">TypeScript</span>
+                  </li>
+                </ul>
+              </li>
+              <li className="my-2">
+                <span className="text-white/90"> Enjoy </span> – Your new
+                project: <br />
+                <ul className="list-disc list-inside text-gray-500">
+                  <li>Project folder is auto-created</li>
+                  <li>Dependencies are installed automatically</li>
+                  <li>Development server starts on its own</li>
+                </ul>
+              </li>
+            </ol>
+          </>
+        ),
+      },
+    },
+  ];
+
+  useEffect(() => {
+    type ? setGetType(0) : setGetType(1);
+  }, [type]);
+  const content = docsContent[getType];
+
   return (
     <div className="min-h-[90vh]">
+      <ScrollProgress className="top-[0vh] z-[100]" />
 
-        <ScrollProgress className="top-[0vh] z-[100]" />
-         
       <div className="flex items-center justify-center md:justify-start px-10 md:px-24 lg:px-80 py-5 md:py-5 w-screen sticky top-[0vh] z-[37] shadow-md backdrop-blur-sm">
         <Breadcrumb>
           <BreadcrumbList>
@@ -82,9 +255,7 @@ const Docsq = () => {
               return (
                 <BreadcrumbItem key={index} className={"hover:text-white/50"}>
                   <BreadcrumbLink
-                    className={
-                      "hover:text-white text-sm transition-all"
-                    }
+                    className={"hover:text-white text-sm transition-all"}
                   >
                     {item.charAt(0).toUpperCase() + item.slice(1)}
                   </BreadcrumbLink>
@@ -95,8 +266,6 @@ const Docsq = () => {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-
-      
 
       <div className=" w-screen h-full flex px-[10vw] mt-5">
         {/* Left */}
@@ -139,76 +308,13 @@ const Docsq = () => {
 
         {/* Main - Introduction*/}
         <div className="space-y-4 p-4 w-full text-left">
-          {/* Content */}
-
-          {/* Intro */}
-          <div className="section mb-20" id="quick-start">
-            <h2 className="text-2xl font-bold mb-4">Quick Start</h2>
-            <p className="text-gray-500">
-              Spin up a fully configured{" "}
-              <span className="text-[#58C4DC]">React</span> +{" "}
-              <span className="text-[#00BCFF]">Tailwind CSS</span> project with
-              a fully preconfigured setup in seconds — no boilerplate, no
-              hassle.
-            </p>
-          </div>
-
-          {/* Prerequisites */}
-          <div className="section mb-20" id="prerequisites">
-            <h2 className="text-2xl font-bold mb-4">Prerequisites ?</h2>
-            <ul className=" text-gray-500 list-disc pl-5">
-              <li>
-                <span className="text-[#4F9C43]"> Node.js </span> – v16 or
-                higher
-              </li>
-              <li>
-                <span className="text-red-500"> npm </span> – v8 or higher
-              </li>
-            </ul>
-          </div>
-
-          {/* Steps */}
-          <div className="section" id="steps">
-            <h2 className="text-2xl font-bold mb-4">How to use?</h2>
-            <ol className="text-gray-500 flex flex-col pl-5 list-decimal">
-              <li className="my-2">
-                <span className="text-white/90"> Run the CLI</span> – Open your
-                terminal and run: <br />
-                <div className="flex items-center justify-start gap-4 my-2">
-                  <button className="bg-zinc-800 text-white border border-zinc-700 px-6 py-2 rounded-md text-base flex items-center gap-2 transition-colors hover:bg-zinc-700">
-                    <code className="text-[0.8rem] md:text-sm lg:text-base">{data.command}</code>
-                  </button>
-                  <button
-                    onClick={handleCopy}
-                    className="bg-zinc-700 hover:bg-zinc-600 text-white p-2 rounded-md cursor-pointer flex items-center gap-2 active:scale-95 transition-all"
-                    aria-label="Copy to clipboard"
-                  >
-                    {copied ? <Check size={24} /> : <Clipboard size={24} />}
-                  </button>
-                </div>
-              </li>
-              <li className="my-2">
-                <span className="text-white/90"> Choose Options</span> – You'll
-                be prompted to:
-                <ul className="list-disc list-inside text-gray-500">
-                  <li>Enter your project name</li>
-                  <li>
-                    Select <span className="text-[#F0DB4F]">JavaScript</span> or{" "}
-                    <span className="text-[#3178C6]">TypeScript</span>
-                  </li>
-                </ul>
-              </li>
-              <li className="my-2">
-                <span className="text-white/90"> Enjoy </span> – Your new
-                project: <br />
-                <ul className="list-disc list-inside text-gray-500">
-                  <li>Project folder is auto-created</li>
-                  <li>Dependencies are installed automatically</li>
-                  <li>Development server starts on its own</li>
-                </ul>
-              </li>
-            </ol>
-          </div>
+          {/* Dynamically render sections based on current type */}
+          {Object.entries(content).map(([key, section]) => (
+            <div key={key} className="section mb-20" id={section.id}>
+              <h2 className="text-2xl font-bold mb-4">{section.title}</h2>
+              {section.content}
+            </div>
+          ))}
         </div>
 
         {/* Right */}

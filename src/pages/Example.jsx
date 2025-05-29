@@ -27,11 +27,9 @@ export default function Example() {
 
 const runCommand = async () => {
   setIsRunning(true);
-  // await wait(1000);
   setStep(1);
   await wait(9000);
   setStep(2);
-  // await wait(6000);
   setIsRunning(false);
 };
 
@@ -62,14 +60,14 @@ const runCommand = async () => {
       </div>
 
       <div className="flex gap-2 items-center justify-center">
-        <Button
+        {/* <Button
           onClick={resetDemo}
           className="cursor-pointer active:scale-95 transition-all"
           disabled={!isRunning || step === 0}
         >
           Reset Demo
-        </Button>
-        <Button onClick={runCommand} className="cursor-pointer active:scale-95 transition-all" disabled={isRunning || step > 0}>
+        </Button> */}
+        <Button onClick={runCommand} className="cursor-pointer active:scale-95 transition-all border" disabled={isRunning || step > 0}>
           Run Command
         </Button>
       </div>
