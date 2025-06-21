@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import npm from "npm-stats-api";
 
 const TypeContext = createContext();
 export const TypeProvider = ({ children }) => {
@@ -39,7 +40,12 @@ export const TypeProvider = ({ children }) => {
         const downloadsData = await downloadsRes.json();
         const versionData = await versionRes.json();
 
-        setDownloads(downloadsData.downloads);
+        const today = new Date(Date.now());
+        const formatted = today.toISOString().split("T")[0];
+
+        const npmStats = await npm.stat(PACKAGE_NAME, "2025-01-01", formatted);
+        setDownloads(npmStats.body.downloads);
+
         setVersion(versionData.version);
       } catch (error) {
         console.error("Error fetching NPM data:", error);
@@ -61,7 +67,6 @@ export const TypeProvider = ({ children }) => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
 
   return (
     <TypeContext.Provider
